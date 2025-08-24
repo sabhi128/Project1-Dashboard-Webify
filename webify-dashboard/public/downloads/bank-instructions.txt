@@ -1,0 +1,4 @@
+Bank: First Federal
+Account: •••• 4821
+Routing: *****123
+Generated: 24/08/2025, 15:24:58

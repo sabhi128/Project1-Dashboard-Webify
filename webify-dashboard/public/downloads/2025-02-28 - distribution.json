@@ -1,0 +1,8 @@
+{
+  "id": 2,
+  "date": "2025-02-28",
+  "amount": 805.1,
+  "type": "Cash",
+  "status": "Paid",
+  "statement": "Demo statement. Replace with real PDF."
+}
