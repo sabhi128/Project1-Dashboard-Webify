@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import RightSidebar from './RightSidebar' 
+import RightSidebar from './RightSidebar'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -45,15 +45,15 @@ const Distributions = ({ onNavigate }) => {
 
   // ✅ Download handler
   const handleDownload = (filePath, fileName) => {
-  // File download trigger
-  const link = document.createElement("a");
-  link.href = filePath;
-  link.download = fileName;
-  link.click();
+    // File download trigger
+    const link = document.createElement("a");
+    link.href = filePath;
+    link.download = fileName;
+    link.click();
 
-  // Add to download center
-  setDownloads(prev => [...prev, { name: fileName, path: filePath }]);
-};
+    // Add to download center
+    setDownloads(prev => [...prev, { name: fileName, path: filePath }]);
+  };
 
 
   // Trigger animations after component mounts
@@ -678,10 +678,9 @@ const Distributions = ({ onNavigate }) => {
         </div>
 
         {/* Right Sidebar */}
-          <div className="w-full lg:w-1/4 xl:w-1/5 p-6">
+        <div className="w-full lg:w-1/4 xl:w-1/5 p-6">
           <RightSidebar animateCharts={animateCharts} darkMode={darkMode} />
         </div>
-        
       </div>
     </div>
   )
