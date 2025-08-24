@@ -14,7 +14,7 @@ import {
   RadialLinearScale
 } from 'chart.js'
 import { Line, Bar, Pie, Radar } from 'react-chartjs-2'
-import CompanyAddress from './CompanyAddress'
+import RightSidebar from './RightSidebar'
 
 // Register Chart.js components
 ChartJS.register(
@@ -353,49 +353,15 @@ const Overview = ({ onNavigate }) => {
     }
   }
 
-  return (
-    <div className={`flex min-h-screen transition-all duration-500 ${
-      document.documentElement.classList.contains('dark') ? 'bg-gray-900' : 'bg-gray-50'
-    }`}>
+return (
+    <div className={`min-h-screen flex flex-col lg:flex-row lg:gap-8 overflow-x-hidden transition-all duration-500 ${
+    document.documentElement.classList.contains('dark') ? 'bg-gray-900' : 'bg-gray-50'
+  }`}>
       {/* Main Content Area */}
-      <div className="flex-1 p-6 max-w-none">
-        {/* Navigation Tabs */}
-        <div className={`mb-6 transition-all duration-700 delay-100 ${
-          animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}>
-          <h1 className={`text-3xl font-bold mb-6 transition-all duration-1000 transition-colors duration-500 ${
-            animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          } ${
-            document.documentElement.classList.contains('dark') ? 'text-white' : 'text-gray-800'
-          }`}>
-            Shad's Dashboard
-          </h1>
-          
-          {/* Navigation Tabs */}
-          <div className={`border-b border-gray-300 ${
-            document.documentElement.classList.contains('dark') ? 'border-gray-600' : 'border-gray-300'
-          }`}>
-            <div className="flex gap-8">
-              <button className="text-white font-medium pb-2 border-b-2 border-green-500">
-                Overview
-              </button>
-              <button 
-                onClick={() => handleNavigate('documents')}
-                className="text-white font-medium pb-2 hover:text-green-400 transition-colors duration-300"
-              >
-                Documents
-              </button>
-              <button 
-                onClick={() => handleNavigate('distributions')}
-                className="text-white font-medium pb-2 hover:text-green-400 transition-colors duration-300"
-              >
-                Distributions
-              </button>
-            </div>
-          </div>
-        </div>
-        
-        {/* Top Metric Cards */}
+<div className={`w-full lg:w-2/3 xl:w-3/4 min-w-0 p-6 lg:pr-0 transition-colors duration-300 ${
+  document.documentElement.classList.contains('dark') ? 'bg-gray-900' : ''
+} bg-white`}> 
+{/* Top Metric Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className={`rounded-xl shadow-lg p-6 text-center transition-all duration-700 delay-200 transition-colors duration-300 ${
             animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -560,11 +526,11 @@ const Overview = ({ onNavigate }) => {
       </div>
 
       {/* Right Sidebar */}
-      <div className={`transition-all duration-1000 delay-500 transition-colors duration-300 ${
-        animateCharts ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-      }`}>
-        <CompanyAddress />
-      </div>
+      <div className={`w-full lg:w-1/3 xl:w-1/4 min-w-0 max-w-full p-6 lg:pl-0 lg:pr-6 transition-colors duration-300 ${
+      document.documentElement.classList.contains('dark') ? 'bg-gray-900' : 'bg-white'
+    }`}>
+      <RightSidebar animateCharts={animateCharts} />
+    </div>
     </div>
   )
 }

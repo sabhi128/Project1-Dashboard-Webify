@@ -1,55 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from './components/Navbar'
-import Overview from './components/Overview'
-import Distributions from './components/Distributions'
-import Documents from './components/Documents'
+import React, { useEffect, useState } from "react";
+import "./index.css";
+import NavBar from "./components/NavBar";
+import Tabs from "./components/Tabs";
+import Overview from "./components/Overview";
+import Documents from "./components/Documents";
+import Distributions from "./components/Distributions";
 
-const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false)
-  const [currentView, setCurrentView] = useState('overview')
 
-  // Listen for dark mode changes from Navbar
+function App() {
+  const [activeTab, setActiveTab] = useState("Overview");
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Global body colors (same dark effect across app)
   useEffect(() => {
-    const checkDarkMode = () => {
-      const darkModeActive = document.documentElement.classList.contains('dark')
-      setIsDarkMode(darkModeActive)
-    }
-
-    // Check initially
-    checkDarkMode()
-
-    // Set up observer to watch for class changes
-    const observer = new MutationObserver(checkDarkMode)
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
-  const renderCurrentView = () => {
-    switch (currentView) {
-      case 'distributions':
-        return <Distributions onNavigate={setCurrentView} />
-      case 'documents':
-        return <Documents onNavigate={setCurrentView} />
-      case 'overview':
-      default:
-        return <Overview onNavigate={setCurrentView} />
-    }
-  }
+    document.body.style.backgroundColor = darkMode ? "#000" : "#fff";
+    document.body.style.color = darkMode ? "#fff" : "#000";
+  }, [darkMode]);
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      isDarkMode ? 'bg-gray-900' : 'bg-gray-50'
-    }`}>
-      <Navbar />
-      <main className="w-full">
-        {renderCurrentView()}
-      </main>
+    <div className={darkMode ? "min-h-screen bg-black text-white" : "min-h-screen bg-gray-100 text-black"}>
+      {/* Fixed Navbar */}
+      <NavBar darkMode={darkMode} toggleDarkMode={() => setDarkMode(!darkMode)} />
+
+      {/* Space below fixed navbar, then Tabs (transparent UI) */}
+      <div className="pt-[60px]">
+        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} darkMode={darkMode} />
+      </div>
+
+      {/* Page content */}
+      <div className="p-6">
+        {activeTab === "Overview" && <Overview />}
+        {activeTab === "Documents" && <Documents darkMode={darkMode} />}
+        {activeTab === "Distributions" && <Distributions />}
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

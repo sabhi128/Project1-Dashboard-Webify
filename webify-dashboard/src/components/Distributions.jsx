@@ -13,7 +13,7 @@ import {
   Filler
 } from 'chart.js'
 import { Line, Pie } from 'react-chartjs-2'
-import CompanyAddress from './CompanyAddress'
+import RightSidebar from './RightSidebar'
 import * as XLSX from 'xlsx'
 
 // Register Chart.js components
@@ -438,33 +438,9 @@ const Distributions = ({ onNavigate }) => {
     <div className={`min-h-screen transition-all duration-500 ${
       document.documentElement.classList.contains('dark') ? 'bg-gray-900' : 'bg-gray-50'
     }`}>
-      {/* Navigation Tabs */}
-      <div className={`border-b border-gray-300 ${
-        document.documentElement.classList.contains('dark') ? 'border-gray-600' : 'border-gray-300'
-      }`}>
-        <div className="px-6 py-4">
-          <div className="flex gap-8">
-            <button 
-              onClick={() => handleNavigate('overview')}
-              className="text-white font-medium pb-2 hover:text-green-400 transition-colors duration-300"
-            >
-              Overview
-            </button>
-            <button 
-              onClick={() => handleNavigate('documents')}
-              className="text-white font-medium pb-2 hover:text-green-400 transition-colors duration-300"
-            >
-              Documents
-            </button>
-            <button className="text-white font-medium pb-2 border-b-2 border-green-500">
-              Distributions
-            </button>
-          </div>
-        </div>
-      </div>
 
       {/* Main Content */}
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row lg:gap-8">
         {/* Main Content Area */}
         <div className="flex-1 p-6">
           {/* Toast Notification */}
@@ -493,243 +469,242 @@ const Distributions = ({ onNavigate }) => {
           <div className={`mb-8 transition-all duration-700 delay-200 ${
             animateCharts ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}>
-            <div className={`bg-gray-800 rounded-lg p-4 ${
-              document.documentElement.classList.contains('dark') ? 'bg-gray-800' : 'bg-gray-700'
-            }`}>
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                {/* Left side - Filters and Dropdowns */}
-                <div className="flex flex-wrap items-center gap-3">
-                   {/* Filters Button */}
-                   <button 
-                     onClick={() => setShowFiltersPanel(!showFiltersPanel)}
-                     className={`flex items-center px-3 py-2 border border-gray-600 rounded-lg text-white transition-colors duration-300 ${
-                       showFiltersPanel ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-700 hover:bg-gray-600'
-                     }`}
-                   >
-                     <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
-                     </svg>
-                     {showFiltersPanel ? 'Hide Filters' : 'Filters'}
-                   </button>
-                   
-                   {/* Filters Panel */}
-                   {showFiltersPanel && (
-                     <div className="absolute top-full left-0 mt-2 w-80 bg-gray-700 border border-gray-600 rounded-lg shadow-lg z-50 p-4">
-                       <div className="space-y-4">
-                         <h3 className="text-white font-semibold">Advanced Filters</h3>
-                         
-                         {/* Date Range Filter */}
-                         <div>
-                           <label className="block text-white text-sm mb-2">Date Range</label>
-                           <div className="grid grid-cols-2 gap-2">
-                             <input 
-                               type="date" 
-                               className="px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm"
-                               placeholder="From"
-                             />
-                             <input 
-                               type="date" 
-                               className="px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm"
-                               placeholder="To"
-                             />
-                           </div>
-                         </div>
-                         
-                         {/* Amount Range Filter */}
-                         <div>
-                           <label className="block text-white text-sm mb-2">Amount Range</label>
-                           <div className="grid grid-cols-2 gap-2">
-                             <input 
-                               type="number" 
-                               className="px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm"
-                               placeholder="Min"
-                             />
-                             <input 
-                               type="number" 
-                               className="px-3 py-2 bg-gray-600 border border-gray-500 rounded text-white text-sm"
-                               placeholder="Max"
-                             />
-                           </div>
-                         </div>
-                         
-                         {/* Apply Filters Button */}
-                         <button 
-                           onClick={() => setShowFiltersPanel(false)}
-                           className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors duration-300"
-                         >
-                           Apply Filters
-                         </button>
-                       </div>
-                     </div>
-                   )}
+            <div className="rounded-lg p-4 bg-white border border-gray-200 transition-colors duration-300">
+  <div className="flex flex-wrap items-center justify-between gap-4">
+    {/* Left side - Filters and Dropdowns */}
+    <div className="flex flex-wrap items-center gap-3">
+       {/* Filters Button */}
+       <button 
+         onClick={() => setShowFiltersPanel(!showFiltersPanel)}
+         className={`flex items-center px-3 py-2 border border-gray-300 rounded-lg text-gray-800 transition-colors duration-300 ${
+           showFiltersPanel ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-100 hover:bg-gray-200'
+         }`}
+       >
+         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
+         </svg>
+         {showFiltersPanel ? 'Hide Filters' : 'Filters'}
+       </button>
+       
+       {/* Filters Panel */}
+       {showFiltersPanel && (
+         <div className="absolute top-full left-0 mt-2 w-80 bg-white border border-gray-300 rounded-lg shadow-lg z-50 p-4">
+           <div className="space-y-4">
+             <h3 className="text-gray-800 font-semibold">Advanced Filters</h3>
+             
+             {/* Date Range Filter */}
+             <div>
+               <label className="block text-gray-700 text-sm mb-2">Date Range</label>
+               <div className="grid grid-cols-2 gap-2">
+                 <input 
+                   type="date" 
+                   className="px-3 py-2 bg-white border border-gray-300 rounded text-gray-800 text-sm"
+                   placeholder="From"
+                 />
+                 <input 
+                   type="date" 
+                   className="px-3 py-2 bg-white border border-gray-300 rounded text-gray-800 text-sm"
+                   placeholder="To"
+                 />
+               </div>
+             </div>
+             
+             {/* Amount Range Filter */}
+             <div>
+               <label className="block text-gray-700 text-sm mb-2">Amount Range</label>
+               <div className="grid grid-cols-2 gap-2">
+                 <input 
+                   type="number" 
+                   className="px-3 py-2 bg-white border border-gray-300 rounded text-gray-800 text-sm"
+                   placeholder="Min"
+                 />
+                 <input 
+                   type="number" 
+                   className="px-3 py-2 bg-white border border-gray-300 rounded text-gray-800 text-sm"
+                   placeholder="Max"
+                 />
+               </div>
+             </div>
+             
+             {/* Apply Filters Button */}
+             <button 
+               onClick={() => setShowFiltersPanel(false)}
+               className="w-full px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-300"
+             >
+               Apply Filters
+             </button>
+           </div>
+         </div>
+       )}
 
-                  {/* YTD Dropdown */}
-                  <div className="relative">
-                    <button 
-                      onClick={() => toggleDropdown('ytd')}
-                      className="flex items-center justify-between px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white hover:bg-gray-600 transition-colors duration-300 min-w-[80px]"
-                    >
-                      {selectedFilters.ytd}
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    {openDropdown === 'ytd' && (
-                      <div className="absolute top-full left-0 mt-1 w-full bg-gray-700 border border-gray-600 rounded-lg shadow-lg z-50">
-                        {['YTD', '12M', 'All'].map((option) => (
-                          <button
-                            key={option}
-                            onClick={() => handleFilterChange('ytd', option)}
-                            className={`w-full px-3 py-2 text-left hover:bg-gray-600 first:rounded-t-lg last:rounded-b-lg transition-all duration-150 ease-in-out ${
-                              selectedFilters.ytd === option ? 'bg-green-600 text-white' : 'text-white hover:text-green-400'
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+      {/* YTD Dropdown */}
+      <div className="relative">
+        <button 
+          onClick={() => toggleDropdown('ytd')}
+          className="flex items-center justify-between px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors duration-300 min-w-[80px]"
+        >
+          {selectedFilters.ytd}
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {openDropdown === 'ytd' && (
+          <div className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+            {['YTD', '12M', 'All'].map((option) => (
+              <button
+                key={option}
+                onClick={() => handleFilterChange('ytd', option)}
+                className={`w-full px-3 py-2 text-left hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg transition-all duration-150 ease-in-out ${
+                  selectedFilters.ytd === option ? 'bg-green-500 text-white' : 'text-gray-800 hover:text-green-600'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
-                  {/* Type Dropdown */}
-                  <div className="relative">
-                    <button 
-                      onClick={() => toggleDropdown('type')}
-                      className="flex items-center justify-between px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white hover:bg-gray-600 transition-colors duration-300 min-w-[80px]"
-                    >
-                      {selectedFilters.type}
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    {openDropdown === 'type' && (
-                      <div className="absolute top-full left-0 mt-1 w-full bg-gray-700 border border-gray-600 rounded-lg shadow-lg z-50">
-                        {['All', 'Cash', 'Reinvested'].map((option) => (
-                          <button
-                            key={option}
-                            onClick={() => handleFilterChange('type', option)}
-                            className={`w-full px-3 py-2 text-left hover:bg-gray-600 first:rounded-t-lg last:rounded-b-lg transition-all duration-150 ease-in-out ${
-                              selectedFilters.type === option ? 'bg-green-600 text-white' : 'text-white hover:text-green-400'
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+      {/* Type Dropdown */}
+      <div className="relative">
+        <button 
+          onClick={() => toggleDropdown('type')}
+          className="flex items-center justify-between px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors duration-300 min-w-[80px]"
+        >
+          {selectedFilters.type}
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {openDropdown === 'type' && (
+          <div className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+            {['All', 'Cash', 'Reinvested'].map((option) => (
+              <button
+                key={option}
+                onClick={() => handleFilterChange('type', option)}
+                className={`w-full px-3 py-2 text-left hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg transition-all duration-150 ease-in-out ${
+                  selectedFilters.type === option ? 'bg-green-500 text-white' : 'text-gray-800 hover:text-green-600'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
-                  {/* Status Dropdown */}
-                  <div className="relative">
-                    <button 
-                      onClick={() => toggleDropdown('status')}
-                      className="flex items-center justify-between px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white hover:bg-gray-600 transition-colors duration-300 min-w-[80px]"
-                    >
-                      {selectedFilters.status}
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-                    {openDropdown === 'status' && (
-                      <div className="absolute top-full left-0 mt-1 w-full bg-gray-700 border border-gray-600 rounded-lg shadow-lg z-50">
-                        {['All', 'Paid', 'Scheduled'].map((option) => (
-                          <button
-                            key={option}
-                            onClick={() => handleFilterChange('status', option)}
-                            className={`w-full px-3 py-2 text-left hover:bg-gray-600 first:rounded-t-lg last:rounded-b-lg transition-all duration-150 ease-in-out ${
-                              selectedFilters.status === option ? 'bg-green-600 text-white' : 'text-white hover:text-green-400'
-                            }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
+      {/* Status Dropdown */}
+      <div className="relative">
+        <button 
+          onClick={() => toggleDropdown('status')}
+          className="flex items-center justify-between px-3 py-2 bg-white border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors duration-300 min-w-[80px]"
+        >
+          {selectedFilters.status}
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {openDropdown === 'status' && (
+          <div className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+            {['All', 'Paid', 'Scheduled'].map((option) => (
+              <button
+                key={option}
+                onClick={() => handleFilterChange('status', option)}
+                className={`w-full px-3 py-2 text-left hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg transition-all duration-150 ease-in-out ${
+                  selectedFilters.status === option ? 'bg-green-500 text-white' : 'text-gray-800 hover:text-green-600'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
 
-                {/* Center - Search Bar */}
-                <div className="flex-1 max-w-md mx-4">
-                  <div className="relative">
-                    <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <circle cx="11" cy="11" r="8" strokeWidth="2"/>
-                      <path d="m21 21-4.35-4.35" strokeWidth="2"/>
-                    </svg>
-                    <input
-                      type="text"
-                      placeholder="Search date, type, status, a..."
-                      className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
+    {/* Center - Search Bar */}
+    <div className="flex-1 max-w-md mx-4">
+      <div className="relative">
+        <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" strokeWidth="2"/>
+          <path d="m21 21-4.35-4.35" strokeWidth="2"/>
+        </svg>
+        <input
+          type="text"
+          placeholder="Search date, type, status, a..."
+          className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-200 ease-in-out"
+        />
+      </div>
+    </div>
 
-                {/* Right side - Action Buttons */}
-                <div className="flex items-center gap-3">
-                  {/* CSV Button */}
-                  <button 
-                    onClick={handleCSVExport}
-                    className="flex items-center px-3 py-2 bg-transparent border border-white rounded-lg text-white hover:bg-white hover:text-gray-800 transition-colors duration-300"
-                  >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    CSV
-                  </button>
+    {/* Right side - Action Buttons */}
+    <div className="flex items-center gap-3">
+      {/* CSV Button */}
+      <button 
+        onClick={handleCSVExport}
+        className="flex items-center px-3 py-2 bg-transparent border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-300"
+      >
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        CSV
+      </button>
 
-                  {/* ICS Button */}
-                  <button 
-                    onClick={handleICSExport}
-                    className="flex items-center px-3 py-2 bg-transparent border border-white rounded-lg text-white hover:bg-white hover:text-gray-800 transition-colors duration-300"
-                  >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    ICS
-                  </button>
+      {/* ICS Button */}
+      <button 
+        onClick={handleICSExport}
+        className="flex items-center px-3 py-2 bg-transparent border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-300"
+      >
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        ICS
+      </button>
 
-                  {/* Recurring Button */}
-                  <button 
-                    onClick={handleRecurringSetup}
-                    className="flex items-center px-3 py-2 bg-transparent border border-white rounded-lg text-white hover:bg-white hover:text-gray-800 transition-colors duration-300"
-                  >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    Recurring
-                  </button>
+      {/* Recurring Button */}
+      <button 
+        onClick={handleRecurringSetup}
+        className="flex items-center px-3 py-2 bg-transparent border border-gray-300 rounded-lg text-gray-800 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-300"
+      >
+        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+        </svg>
+        Recurring
+      </button>
 
-                  {/* Undo/Redo Buttons */}
-                  <div className="flex gap-1">
-                    <button 
-                      onClick={handleUndo}
-                      disabled={historyIndex <= 0}
-                      className={`p-2 border border-gray-600 rounded-lg transition-colors duration-300 ${
-                        historyIndex <= 0 
-                          ? 'bg-gray-800 text-gray-500 cursor-not-allowed' 
-                          : 'bg-gray-700 text-white hover:bg-gray-600'
-                      }`}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                      </svg>
-                    </button>
-                    <button 
-                      onClick={handleRedo}
-                      disabled={historyIndex >= tableHistory.length - 1}
-                      className={`p-2 border border-gray-600 rounded-lg transition-colors duration-300 ${
-                        historyIndex >= tableHistory.length - 1 
-                          ? 'bg-gray-800 text-gray-500 cursor-not-allowed' 
-                          : 'bg-gray-700 text-white hover:bg-gray-600'
-                      }`}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+      {/* Undo/Redo Buttons */}
+      <div className="flex gap-1">
+        <button 
+          onClick={handleUndo}
+          disabled={historyIndex <= 0}
+          className={`p-2 border border-gray-300 rounded-lg transition-colors duration-300 ${
+            historyIndex <= 0 
+              ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+              : 'bg-white text-gray-800 hover:bg-gray-100'
+          }`}
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+        </button>
+        <button 
+          onClick={handleRedo}
+          disabled={historyIndex >= tableHistory.length - 1}
+          className={`p-2 border border-gray-300 rounded-lg transition-colors duration-300 ${
+            historyIndex >= tableHistory.length - 1 
+              ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
+              : 'bg-white text-gray-800 hover:bg-gray-100'
+          }`}
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
           </div>
 
           {/* Recurring Setup Panel */}
@@ -1048,13 +1023,10 @@ const Distributions = ({ onNavigate }) => {
           </div>
         </div>
 
-                 {/* Right Sidebar */}
-         <div className={`w-full lg:w-auto transition-all duration-1000 delay-500 ${
-           animateCharts ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-         }`}>
-           <CompanyAddress />
-         </div>
-      </div>
+        {/* Right: Sidebar */}
+<div className="w-full lg:w-1/3 xl:w-1/4 min-w-0 max-w-full p-6 lg:pl-0 lg:pr-6">
+  <RightSidebar animateCharts={animateCharts} />
+</div>      </div>
     </div>
   )
 }
