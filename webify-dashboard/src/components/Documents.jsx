@@ -138,12 +138,12 @@ const DocumentsPage = ({ darkMode }) => {
         <div className="flex flex-col lg:flex-row gap-6 shadow-lg p-6">
             {/* Left: Documents */}
             <div
-  className={`flex-1 p-4 rounded-lg transition-all duration-1000 delay-500
+                className={`flex-1 p-4 rounded-lg transition-all duration-1000 delay-500
   ${animateCharts ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}
-  ${darkMode 
-    ? "bg-gray-900 text-gray-100" 
-    : "bg-white text-gray-900 shadow-lg"} `}
->
+  ${darkMode
+                        ? "bg-gray-900 text-gray-100"
+                        : "bg-white text-gray-900 shadow-lg"} `}
+            >
 
 
                 <Toolbar
